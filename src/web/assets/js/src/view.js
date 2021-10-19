@@ -28,8 +28,6 @@ export default function () {
 
         $resultOutput.innerText = result.value;
 
-        window.HighlightJS.highlightBlock($resultOutput);
-
         $resultContainer.style.display = 'block';
     }
 
