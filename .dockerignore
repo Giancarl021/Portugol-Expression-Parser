@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+
+# Development environment
+scripts/
+yarn.lock
+*.env
+
+# Execution generated data
+data/

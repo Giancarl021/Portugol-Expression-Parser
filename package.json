@@ -1,0 +1,24 @@
+{
+  "name": "portugol-expression-parser",
+  "version": "0.1.0",
+  "description": "Parses an simple expression on portugol",
+  "main": "server.js",
+  "repository": "https://github.com/Giancarl021/Portugol-Expression-Parser.git",
+  "author": "Giancarlo Fontela da Luz <gian.f.luz@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon --ignore data/ --ignore src/web/ .",
+    "build": "node scripts/build.js"
+  },
+  "dependencies": {
+    "@giancarl021/locate": "^0.1.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13",
+    "synp": "^1.9.7"
+  }
+}
