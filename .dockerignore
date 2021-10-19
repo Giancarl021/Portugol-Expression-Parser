@@ -8,3 +8,7 @@ yarn.lock
 
 # Execution generated data
 data/
+
+# Repository documentation
+docs/
+*.md

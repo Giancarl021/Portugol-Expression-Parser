@@ -2,33 +2,7 @@
 
 A ideia deste projeto é criar uma interface web simples que processa expressões simples de uma única linha em cima do interpretador do Portugol Studio.
 
-## Utilização
-
-Ao abrir a página inicial, é possível notar o campo para escrever a expressão. Basta preenchê-lo e clicar no botão "Analisar"
-
-![](docs/01.png)
-
-Um exemplo de uma expressão:
-
-![](docs/02.png)
-
-Um exemplo de uma expressão com erros:
-
-![](docs/03.png)
-
-Um exemplo de uma expressão com avisos:
-
-![](docs/04.png)
-
-Um exemplo de uma expressão no modo de depuração:
-
-![](docs/05.png)
-
 ## Hospedagem
-
-Há duas formas de hospedar esta aplicação: em uma [imagem Docker](https://hub.docker.com/r/giancarl021/portugol-expression-parser) ou em um servidor com o [NodeJS](https://nodejs.org/en/) e o [Java](https://www.java.com/) instalados.
-
-### Docker
 
 Para hospedar utilizando o Docker, é necessário utilizar o comando:
 
@@ -39,12 +13,6 @@ docker run -d -p <PORTA>:80 giancarl021/portugol-expression-parser
 Em que ``<PORTA>`` é a porta do hospedeiro em que o serviço ficará disponível.
 
 Também é possível modificar a porta interna do serviço, com a flag ``-e PORT=<PORTA>``, caso seja necessário.
-
-### Diretamente no servidor
-
-Para hospedar a aplicação na diretamente no servidor, clone este repositório, utilize um serviço como o [PM2](https://pm2.keymetrics.io/) para manter a aplicação rodando.
-
-Tenha em mente que você precisará tanto do NodeJS quando to Java instalados no servidor e com seus respectivos comandos disponíveis na variável de ambiente ``PATH``.
 
 ## API
 
