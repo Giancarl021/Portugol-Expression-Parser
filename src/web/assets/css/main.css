@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px #0004;
+}
+
+header h1.title,
+header h2.subtitle {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
+@media screen and (max-width: 769px), print {
+    header h2.subtitle {
+        display: none;
+    }
+}

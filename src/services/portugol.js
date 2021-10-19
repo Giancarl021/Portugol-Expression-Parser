@@ -1,6 +1,7 @@
 const { spawn } = require('child_process');
 const locate = require('@giancarl021/locate');
 const fs = require('fs/promises');
+const buildObject = require('../util/build-object');
 
 const CMD = process.env.PORTUGOL_CONSOLE_CMD || 'portugol-console';
 
@@ -34,6 +35,7 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
         if (!expression) {
             throw new Error('Expression could not be empty');
         }
+
         const program = convertToProgram(expression);
 
         const path = locate(`${_tempPath}\\${filename}`);
@@ -43,11 +45,22 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
         const cp = spawn(CMD, [path]);
 
         let result = '';
+        let err = '';
+        let warning = '';
 
         await new Promise((resolve, reject) => {
             cp.stdout.on('data', chunk => {
                 if (chunk.length === 1) return;
-                result += chunk;
+                result += chunk.toString('latin1');
+            });
+
+            cp.stderr.on('data', chunk => {
+                const str = chunk.toString('latin1');
+                if (str.startsWith('AVISO: ')) {
+                    warning += str;
+                } else {
+                    err += str;
+                }
             });
 
             cp.on('exit', resolve);
@@ -56,10 +69,24 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
             cp.stdin.write('\n');
         });
 
-
         await fs.unlink(path);
 
-        return result.replace(/(\r?\n)Programa\sfinalizado((\r?\n)*.*)*/m, '');
+        const obj = buildObject({
+            warning: warning.split(/\r?\n/g).map(warn => warn.replace(/(^AVISO:\s|\.\sLinha.*$)/g, '')).filter(Boolean),
+            program
+        });
+
+        if (err.trim()) {
+            return obj.build({
+                status: 'error',
+                value: err.split(/\r?\n/g).map(err => err.replace(/(^ERRO:\s|\.\.(.*)$)/g, '').trim()).filter(Boolean)
+            });
+        }
+
+        return obj.build({
+            status: 'success',
+            value: result.replace(/(\r?\n)Programa\sfinalizado((\r?\n)*.*)*/m, '')
+        });
     }
 
     return {

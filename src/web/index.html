@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portugol Tools</title>
+    <!-- LIBS -->
+    <link rel="stylesheet" href="assets/libs/bulma.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/libs/portugol-studio-dark.css">
+    <script src="assets/libs/highlight.js"></script>
+    <script>
+        window.HighlightJS = hljs;
+    </script>
+
+    <script defer type="module" src="assets/js/main.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="title">Portugol Tools</h1>
+        <h2 class="subtitle">Análise de expressões</h2>
+    </header>
+    <section class="section container">
+        <div class="field">
+            <div class="field">
+                <p class="control">
+                    <label class="label">Expressão</label>
+                    <input class="input" type="text" id="ipt-expression" required/>
+                </p>
+            </div>
+        </div>
+        <div class="is-fullwidth is-flex is-justify-content-space-between">
+            <label class="checkbox">
+                <input type="checkbox" id="chb-debug">
+                Modo de depuração
+            </label>
+            <button class="button is-link" type="submit" id="btn-parse">Analisar</button>
+        </div>
+    </section>
+    <section class="section container">
+        <pre>
+            <code class="hljs portugol" id="otp-program"></code>
+        </pre>
+    </section>
+</body>
+
+</html>
