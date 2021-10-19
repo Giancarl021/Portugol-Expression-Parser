@@ -1,19 +1,27 @@
 require('dotenv/config');
 const { spawn } = require('child_process');
-const locate = require('@giancarl021/locate');
 
 const imageName = process.env.DEV_DOCKER_IMAGE_NAME;
+const port = process.env.PORT || 80;
 
 if (!imageName) {
     throw new Error('Invalid docker image name');
 }
 
 async function main() {
-    const mainDir = locate('..');
+    console.log('[DOCKER RUNNER] Starting container');
 
-    console.log('[DOCKER BUILDER] Building image');
-
-    const dockerProcess = spawn('docker', [ 'build', '-t', imageName, mainDir ], {
+    const dockerProcess = spawn('docker', [
+        'run',
+        '-d',
+        '--rm',
+        '-p',
+        `${port}:${port}`,
+        '-e',
+        `PORT=${port}`,
+        imageName
+    ],
+    {
         stdio: 'inherit'
     });
 

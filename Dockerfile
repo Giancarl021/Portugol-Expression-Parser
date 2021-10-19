@@ -1,14 +1,12 @@
-FROM alpine:latest
-
+FROM timbru31/java-node:11-jdk
 WORKDIR /usr/app
 
-RUN apk --no-cache --update add gcc make g++ zlib-dev python2 nodejs npm
-RUN apk --no-cache --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing add openjdk16-jre
-
-COPY . .
+COPY package*.json .
 
 RUN npm install --only=production
 
-EXPOSE 80 25565
+COPY . .
+
+EXPOSE 80
 
 CMD [ "npm", "start" ]

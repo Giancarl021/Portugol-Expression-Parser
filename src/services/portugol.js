@@ -42,6 +42,7 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
         await fs.writeFile(path, program);
 
         const cp = spawn('java', [
+            '-Dfile.encoding=latin1',
             '-jar',
             consolePath,
             path
