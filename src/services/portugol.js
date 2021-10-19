@@ -3,8 +3,7 @@ const locate = require('@giancarl021/locate');
 const fs = require('fs/promises');
 const buildObject = require('../util/build-object');
 
-const CMD = process.env.PORTUGOL_CONSOLE_CMD || 'portugol-console';
-
+const consolePath = locate('dependencies/java/portugol/portugol-console.jar');
 
 module.exports = function ({ tempPath = 'data/temp' } = {}) {
     const _tempPath = locate(tempPath);
@@ -42,7 +41,11 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
 
         await fs.writeFile(path, program);
 
-        const cp = spawn(CMD, [path]);
+        const cp = spawn('java', [
+            '-jar',
+            consolePath,
+            path
+        ]);
 
         let result = '';
         let err = '';
@@ -50,7 +53,6 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
 
         await new Promise((resolve, reject) => {
             cp.stdout.on('data', chunk => {
-                if (chunk.length === 1) return;
                 result += chunk.toString('latin1');
             });
 
