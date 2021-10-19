@@ -79,7 +79,7 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
         if (err.trim()) {
             return obj.build({
                 status: 'error',
-                value: err.split(/\r?\n/g).map(err => err.replace(/(^ERRO:\s|\.\.(.*)$)/g, '').trim()).filter(Boolean)
+                value: err.split(/\r?\n/g).map(err => err.replace(/(^ERRO:\s|\.\.(.*)$|\.\sLinha.*$)/g, '').trim()).filter(Boolean)
             });
         }
 

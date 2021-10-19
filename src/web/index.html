@@ -26,10 +26,8 @@
     <section class="section container">
         <div class="field">
             <div class="field">
-                <p class="control">
-                    <label class="label">Expressão</label>
-                    <input class="input" type="text" id="ipt-expression" required/>
-                </p>
+                <label class="label">Expressão</label>
+                <input class="input" type="text" id="ipt-expression" required />
             </div>
         </div>
         <div class="is-fullwidth is-flex is-justify-content-space-between">
@@ -41,9 +39,36 @@
         </div>
     </section>
     <section class="section container">
-        <pre>
-            <code class="hljs portugol" id="otp-program"></code>
-        </pre>
+        <div class="field" id="result-container">
+            <label class="label">Saída</label>
+            <pre>
+                <code class="hljs portugol" id="otp-result">
+                    100
+                </code>
+            </pre>
+        </div>
+        <div class="field" id="error-container">
+            <label class="label">Erros</label>
+            <ul id="otp-error"></ul>
+        </div>
+        <div class="field" id="result-container">
+            <label class="label">Saída</label>
+            <pre>
+                <code class="hljs portugol" id="otp-result">
+                    100
+                </code>
+            </pre>
+        </div>
+        <div class="field" id="warning-container">
+            <label class="label">Avisos</label>
+            <ul id="otp-warning"></ul>
+        </div>
+        <div class="field" id="program-container">
+            <label class="label">Programa</label>
+            <pre>
+                <code class="hljs portugol" id="otp-program"></code>
+            </pre>
+        </div>
     </section>
 </body>
 

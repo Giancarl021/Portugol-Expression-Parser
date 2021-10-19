@@ -17,3 +17,37 @@ header h2.subtitle {
         display: none;
     }
 }
+
+#result-container,
+#program-container,
+#error-container,
+#warning-container {
+    display: none;
+}
+
+#error-container ul,
+#warning-container ul {
+    list-style-type: disc;
+}
+
+#result-container pre,
+#program-container pre {
+    padding: 0;
+    background-color: transparent;
+}
+
+#error-container label.label {
+    color: hsl(348, 100%, 31%);
+}
+
+#error-container li {
+    color: hsl(348, 100%, 61%);
+}
+
+#warning-container label.label {
+    color: hsl(48, 100%, 37%);
+}
+
+#warning-container li {
+    color: hsl(48, 100%, 17%);
+}

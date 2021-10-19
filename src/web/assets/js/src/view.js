@@ -1,27 +1,55 @@
 export default function () {
+    const $programContainer = document.querySelector('#program-container');
+    const $resultContainer = document.querySelector('#result-container');
+    const $errorContainer = document.querySelector('#error-container');
+    const $warningContainer = document.querySelector('#warning-container');
+
     const $parseBtn = document.querySelector('#btn-parse');
     const $expressionInput = document.querySelector('#ipt-expression');
     const $debugCheckbox = document.querySelector('#chb-debug');
-    const $programOutput = document.querySelector('#otp-program');
+    const $programOutput = $programContainer.querySelector('#otp-program');
+    const $resultOutput = $resultContainer.querySelector('#otp-result');
+    const $errorOutput = $errorContainer.querySelector('#otp-error');
+    const $warningOutput = $warningContainer.querySelector('#otp-warning');
 
     function loadResult(result) {
+        const warns = (result.warning || []).reduce((acc, warn) => acc + `<li>${warn}</li>`, '');
 
+        if (warns) {
+            $warningOutput.innerHTML = warns;
+            $warningContainer.style.display = 'block';
+        }
+
+        if (result.status === 'error') {
+            $errorOutput.innerHTML = result.value.reduce((acc, err) => acc + `<li>${err}</li>`, '');
+            $errorContainer.style.display = 'block';
+            return;
+        }
+
+        $resultOutput.innerText = result.value;
+
+        window.HighlightJS.highlightBlock($resultOutput);
+
+        $resultContainer.style.display = 'block';
     }
 
     function loadDebugProgram(program) {
         $programOutput.innerText = program;
 
-        console.log(window.HighlightJS);
-
         window.HighlightJS.highlightBlock($programOutput);
+
+        $programContainer.style.display = 'block';
     }
 
     function unloadResult() {
-        
+        $resultContainer.style.display = 'none';
+        $errorContainer.style.display = 'none';
+        $resultContainer.style.display = 'none';
+        $warningContainer.style.display = 'none';
     }
 
     function unloadDebugProgram() {
-
+        $programContainer.style.display = 'none';
     }
 
     function bindEvents({ api }) {
@@ -46,7 +74,7 @@ export default function () {
             loadResult(result);
 
             if (debugMode) {
-                loadDebugProgram(result.program);
+                loadDebugProgram(result.program, debugMode);
             }
         }
     }
