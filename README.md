@@ -57,7 +57,7 @@ Tenha em mente que você precisará tanto do NodeJS quando to Java instalados no
 Requisição:
 ```json
 {
-	"expression": "2 + 2 * 4"
+  "expression": "2 + 2 * 4"
 }
 ```
 
@@ -76,7 +76,7 @@ Quando uma expressão não tiver uma análise bem sucedida, será retornada na r
 Requisição
 ```json
 {
-	"expression": "2 + 2 * 4 + a"
+  "expression": "2 + 2 * 4 + a"
 }
 ```
 
@@ -97,7 +97,7 @@ Existem casos em que é possível executar o código, porém com avisos de poss�
 Requisição
 ```json
 {
-	"expression": "raiz(100, 2)"
+  "expression": "raiz(100, 2)"
 }
 ```
 
@@ -120,8 +120,8 @@ Para utilizar o modo de depuração, simplesmente adicione o valor ``true`` para
 Requisição:
 ```json
 {
-	"expression": "2 + 2 * 4",
-    "debug": true
+  "expression": "2 + 2 * 4",
+  "debug": true
 }
 ```
 
