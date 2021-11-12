@@ -25,8 +25,8 @@ module.exports = function ({ tempPath = 'data/temp' } = {}) {
 
         function parse(expression) {
             return expression
-                .replace(/(seno|cosseno|arredondar|potencia|raiz|valor_absoluto|maior_numero|menor_numero)\(/g, 'm.$&')
-                .replace(/(inteiro_para_real|real_para_inteiro)\(/g, 't.$&');
+                .replace(/(seno|cosseno|arredondar|potencia|raiz|valor_absoluto|maior_numero|menor_numero)\s*\(/g, 'm.$&')
+                .replace(/(inteiro_para_real|real_para_inteiro)\s*\(/g, 't.$&');
         }
     }
 
